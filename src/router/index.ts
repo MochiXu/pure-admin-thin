@@ -30,6 +30,7 @@ import remainingRouter from "./modules/remaining";
  * 如何匹配所有文件请看：https://github.com/mrmlnc/fast-glob#basic-syntax
  * 如何排除文件请看：https://cn.vitejs.dev/guide/features.html#negative-patterns
  */
+// import.meta.glob 用来引入多个/单个的文件 https://cn.vitejs.dev/guide/features.html#glob-import
 const modules: Record<string, any> = import.meta.glob(
   ["./modules/**/*.ts", "!./modules/**/remaining.ts"],
   {
@@ -50,11 +51,14 @@ export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(
 );
 
 /** 用于渲染菜单，保持原始层级 */
+// 对应路由对象，路由 path 是 [/, /error, /login, /redirect]
 export const constantMenus: Array<RouteComponent> = ascending(routes).concat(
   ...remainingRouter
 );
 
 /** 不参与菜单的路由 */
+// Object.kesy 能够获取 remainingRouter 的 key，即 0 和 1
+// 后面的 .map 方法最后赋值 ['/login', '/redirect'] 给 remainingPaths
 export const remainingPaths = Object.keys(remainingRouter).map(v => {
   return remainingRouter[v].path;
 });
@@ -62,6 +66,7 @@ export const remainingPaths = Object.keys(remainingRouter).map(v => {
 /** 创建路由实例 */
 export const router: Router = createRouter({
   history: getHistoryMode(import.meta.env.VITE_ROUTER_HISTORY),
+  // 合并静态路由和 remaining 路由
   routes: constantRoutes.concat(...(remainingRouter as any)),
   strict: true,
   scrollBehavior(to, from, savedPosition) {
@@ -90,12 +95,15 @@ export function resetRouter() {
       );
     }
   });
+  // TODO 这里估计是做权限管理的？
   usePermissionStoreHook().clearAllCachePage();
 }
 
 /** 路由白名单 */
 const whiteList = ["/login"];
 
+// 页面缓存 https://blog.csdn.net/qq_42127308/article/details/94445321
+// router beforeEach 用来做路由守卫
 router.beforeEach((to: toRouteType, _from, next) => {
   if (to.meta?.keepAlive) {
     const newMatched = to.matched;

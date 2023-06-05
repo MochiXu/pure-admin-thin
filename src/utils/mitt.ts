@@ -1,6 +1,7 @@
 import type { Emitter } from "mitt";
 import mitt from "mitt";
 
+// 自定义事件类型，这些都是和页面操作相关的事件
 type Events = {
   resize: {
     detail: {

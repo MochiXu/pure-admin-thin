@@ -4,12 +4,15 @@ import axios from "axios";
 let config: object = {};
 const { VITE_PUBLIC_PATH } = import.meta.env;
 
+// 设置配置
 const setConfig = (cfg?: unknown) => {
   config = Object.assign(config, cfg);
 };
 
+// 获取对应配置项结果
 const getConfig = (key?: string): ServerConfigs => {
   if (typeof key === "string") {
+    // key 根据 . 进行分割
     const arr = key.split(".");
     if (arr && arr.length) {
       let data = config;
@@ -45,6 +48,7 @@ export const getServerConfig = async (app: App): Promise<undefined> => {
       return $config;
     })
     .catch(() => {
+      // 实际上通过 public 下 ServerConfig.json 文件进行配置获取
       throw "请在public文件夹下添加serverConfig.json配置文件";
     });
 };

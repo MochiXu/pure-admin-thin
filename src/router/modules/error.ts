@@ -3,6 +3,7 @@ import { $t } from "@/plugins/i18n";
 export default {
   path: "/error",
   redirect: "/error/403",
+  // 路由的 meta 字段 https://router.vuejs.org/zh/guide/advanced/meta.html
   meta: {
     icon: "informationLine",
     title: $t("menus.hsabnormal"),

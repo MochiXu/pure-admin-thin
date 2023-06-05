@@ -8,7 +8,15 @@ import { addIcon } from "@iconify/vue/dist/offline";
 import HomeFilled from "@iconify-icons/ep/home-filled";
 import InformationLine from "@iconify-icons/ri/information-line";
 import Lollipop from "@iconify-icons/ep/lollipop";
+import EpDArrowRight from "@iconify-icons/ep/d-arrow-right";
+import EpDArrowLeft from "@iconify-icons/ep/d-arrow-left";
+import Performance from "@iconify-icons/ri/rocket-2-line";
+import taskLine from "@iconify-icons/ri/task-line";
 
 addIcon("homeFilled", HomeFilled);
 addIcon("informationLine", InformationLine);
 addIcon("lollipop", Lollipop);
+addIcon("performance", Performance);
+addIcon("taskline", taskLine);
+addIcon("arrowRight", EpDArrowRight);
+addIcon("arrowLeft", EpDArrowLeft);

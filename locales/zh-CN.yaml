@@ -32,6 +32,14 @@ menus:
   permission: 权限管理
   permissionPage: 页面权限
   permissionButton: 按钮权限
+  hsPerformance: 性能测试
+  hsCommitBlock: 选取结果
+  hsCharts: 可视化
+  hsManager: 数据管理
+  hsTask: 任务管理
+  hsTaskCreater: 任务创建
+  hsTaskStatus: 任务状态
+  hsTaskManager: 数据管理
 status:
   hsLoad: 加载中...
 login:

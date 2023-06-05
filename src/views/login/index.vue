@@ -23,13 +23,15 @@ import Lock from "@iconify-icons/ri/lock-fill";
 import Check from "@iconify-icons/ep/check";
 import User from "@iconify-icons/ri/user-3-fill";
 
+// defineOptions 用来设置组件 name, 是一个语法糖 https://juejin.cn/post/7075908280383455268
 defineOptions({
   name: "Login"
 });
 const router = useRouter();
 const loading = ref(false);
+// element-plus 表单验证组件
 const ruleFormRef = ref<FormInstance>();
-
+// TODO 初始化全局存储？
 const { initStorage } = useLayout();
 initStorage();
 
@@ -38,7 +40,7 @@ const { dataTheme, dataThemeChange } = useDataThemeChange();
 dataThemeChange();
 const { title, getDropdownItemStyle, getDropdownItemClass } = useNav();
 const { locale, translationCh, translationEn } = useTranslationLang();
-
+// reactive 和 ref 的区别 https://blog.csdn.net/alokka/article/details/124410823
 const ruleForm = reactive({
   username: "admin",
   password: "admin123"
@@ -46,9 +48,11 @@ const ruleForm = reactive({
 
 const onLogin = async (formEl: FormInstance | undefined) => {
   loading.value = true;
+  console.log("entry onLogin, loading.value is ", loading.value);
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
+      console.log("valid, begin");
       useUserStoreHook()
         .loginByUsername({ username: ruleForm.username, password: "admin123" })
         .then(res => {
@@ -60,8 +64,10 @@ const onLogin = async (formEl: FormInstance | undefined) => {
             });
           }
         });
+      console.log("valid, end");
     } else {
       loading.value = false;
+      console.log("invalid, leave onLogin, loading.value is ", loading.value);
       return fields;
     }
   });

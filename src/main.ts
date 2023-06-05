@@ -1,13 +1,22 @@
 import App from "./App.vue";
 import router from "./router";
+// 引入 pinia 公共存储
 import { setupStore } from "@/store";
 import ElementPlus from "element-plus";
 import { useI18n } from "@/plugins/i18n";
+// 公共配置
 import { getServerConfig } from "./config";
 import { createApp, Directive } from "vue";
 import { MotionPlugin } from "@vueuse/motion";
 // import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive";
+import Table from "@pureadmin/table";
+// 引入 multiselect
+// import Multiselect from "vue-multiselect";
+// import Plotly from "plotly.js";
+import VueJsonPretty from "vue-json-pretty";
+import "vue-json-pretty/lib/styles.css";
+import "vue-multiselect/dist/vue-multiselect.css";
 
 // import Table from "@pureadmin/table";
 // import PureDescriptions from "@pureadmin/descriptions";
@@ -50,7 +59,13 @@ getServerConfig(app).then(async config => {
   await router.isReady();
   injectResponsiveStorage(app, config);
   setupStore(app);
-  app.use(MotionPlugin).use(useI18n).use(ElementPlus);
+  app
+    .use(MotionPlugin)
+    .use(useI18n)
+    .use(ElementPlus)
+    .use(Table)
+    .use(VueJsonPretty);
+  // .use(Multiselect);
   // .use(useEcharts);
   // .use(Table);
   // .use(PureDescriptions);

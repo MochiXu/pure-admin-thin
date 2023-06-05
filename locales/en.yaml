@@ -32,6 +32,14 @@ menus:
   permission: Permission Manage
   permissionPage: Page Permission
   permissionButton: Button Permission
+  hsPerformance: Performance Test
+  hsCommitBlock: Pick Commit Block
+  hsManager: Data Manage
+  hsCharts: Performance Chart
+  hsTask: Task Manager
+  hsTaskCreater: Create Task
+  hsTaskStatus: Task Status
+  hsTaskManager: Data Manage
 status:
   hsLoad: Loading...
 login:

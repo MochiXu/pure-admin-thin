@@ -34,6 +34,84 @@ const permissionRouter = {
     }
   ]
 };
+// 任务投递模块
+// 性能测试结果
+const taskManagerRouter = {
+  path: "/taskmanager",
+  meta: {
+    icon: "taskline",
+    title: "menus.hsTask",
+    rank: 10
+  },
+  children: [
+    {
+      path: "/taskpage/createtask/index",
+      name: "TaskCreater",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsTaskCreater",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/taskpage/taskstatus/index",
+      name: "TaskStatus",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsTaskStatus",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/taskpage/taskmanager/index",
+      name: "TaskManager",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsTaskManager",
+        roles: ["admin"]
+      }
+    }
+  ]
+};
+
+// 性能测试结果
+const performanceRouter = {
+  path: "/performance",
+  meta: {
+    icon: "performance",
+    title: "menus.hsPerformance",
+    rank: 12
+  },
+  children: [
+    {
+      path: "/performance/commitblock/index",
+      name: "CommitBlock",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsCommitBlock",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/performance/visualization/index",
+      name: "Charts",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsCharts",
+        roles: ["admin", "common"]
+      }
+    },
+    {
+      path: "/performance/manager/index",
+      name: "Manager",
+      meta: {
+        // icon: "performance",
+        title: "menus.hsManager",
+        roles: ["admin"]
+      }
+    }
+  ]
+};
 
 export default [
   {
@@ -42,7 +120,7 @@ export default [
     response: () => {
       return {
         success: true,
-        data: [permissionRouter]
+        data: [permissionRouter, performanceRouter, taskManagerRouter]
       };
     }
   }

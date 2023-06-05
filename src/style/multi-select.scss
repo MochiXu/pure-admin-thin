@@ -1,0 +1,39 @@
+.multiselect,
+.multiselect__input,
+.multiselect__tags,
+.multiselect__single,
+.multiselect__active,
+.multiselect__content-wrapper {
+  font-family: inherit;
+  font-size: 0.9em;
+  touch-action: manipulation;
+  min-width: 13em;
+  max-width: 65em;
+  border-color: var(--el-border-color);
+}
+
+.multiselect__tags {
+  // 设置元素框内的颜色为透明
+  background: #fff0;
+  // 设置所有在框内的 tag 颜色为主题色
+  .multiselect__tag {
+    background: var(--el-color-primary);
+  }
+  // 设置默认状态下 x 图表的颜色
+  .multiselect__tag-icon:after {
+    color: antiquewhite;
+  }
+}
+// 设置下拉框展开时鼠标指针所在的 option 背景色为主题色
+.multiselect__option--highlight {
+  background: var(--el-color-primary);
+}
+// 设置下拉框展开时背景色
+.multiselect__content-wrapper {
+  background-color: var(--el-bg-color-overlay);
+  color: var(--el-text-color-regular);
+}
+// tags 超出框的宽度的时候，会自动缩小
+.multiselect__tags-wrap {
+  display: flex;
+}
